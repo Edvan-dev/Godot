@@ -709,12 +709,6 @@ collision_mask = 2
 [node name="Collision" type="CollisionShape2D" parent="dialog_area"]
 shape = SubResource("RectangleShape2D_kctyj")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "ALT: para atacar.
-CTRL: para defender"
-
 [node name="Boss_attack" type="Node2D" parent="."]
 
 [node name="pos_1" type="Marker2D" parent="Boss_attack"]
@@ -725,6 +719,18 @@ position = Vector2(8850, 0)
 
 [node name="pos_3" type="Marker2D" parent="Boss_attack"]
 position = Vector2(9000, 0)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 143.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+offset_right = 157.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 14
+text = "ALT: para atacar.
+CTRL: para defender"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="dialog_area" to="." method="_on_dialog_area_body_entered"]
