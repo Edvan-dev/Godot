@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://by5xoxoke8204"]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/plataform.gd" id="1_1rkii"]
+[ext_resource type="Texture2D" uid="uid://clbj24emgtp30" path="res://Assets/oak_woods_tileset.png" id="1_5amlh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft0nx"]
+size = Vector2(72, 23)
+
+[node name="Plataform" type="AnimatableBody2D" groups=["plataformas"]]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("1_1rkii")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5amlh")
+region_enabled = true
+region_rect = Rect2(119.43, 215.206, 73.2539, 25.1362)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ft0nx")

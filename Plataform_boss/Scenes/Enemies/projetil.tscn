@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0en0fe560dwq"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/projetil.gd" id="1_agmrv"]
+[ext_resource type="Texture2D" uid="uid://csttjnsg77mji" path="res://Assets/Enemies/weapon PNG/arm_projectile.png" id="1_vkmah"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxm3p"]
+size = Vector2(35, 11)
+
+[node name="Projetil" type="Area2D" node_paths=PackedStringArray("Sprite")]
+collision_layer = 64
+collision_mask = 4
+script = ExtResource("1_agmrv")
+Sprite = NodePath("Sprite")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_vkmah")
+offset = Vector2(-28, 12)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_oxm3p")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

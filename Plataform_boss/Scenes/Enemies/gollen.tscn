@@ -1,0 +1,563 @@
+[gd_scene load_steps=33 format=3 uid="uid://tkj1o64kkr7"]
+
+[ext_resource type="Texture2D" uid="uid://chbmmwdm0hfbs" path="res://Assets/Enemies/PNG sheet/Character_sheet.png" id="1_jwxxt"]
+[ext_resource type="Script" path="res://Scenes/Enemies/gollen.gd" id="1_myt3k"]
+[ext_resource type="PackedScene" uid="uid://b0en0fe560dwq" path="res://Scenes/Enemies/projetil.tscn" id="2_infr1"]
+[ext_resource type="Texture2D" uid="uid://5sk3jdnfhr8y" path="res://Assets/Enemies/weapon PNG/Laser_sheet-shee_longt.png" id="4_nr3nr"]
+
+[sub_resource type="Animation" id="Animation_h22lw"]
+resource_name = "Blink"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jwxxt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_uq6c4"]
+resource_name = "Idle"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jwxxt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_dr35c"]
+resource_name = "Laser_attack"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jwxxt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.5001, 0.5002, 0.5003, 0.5004, 0.5005, 0.5006, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(5, 5), Vector2i(5, 5), Vector2i(5, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(0, 5), Vector2i(6, 5)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"laser_shot"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xyxd4"]
+resource_name = "Melee_attack"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jwxxt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_aply_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3sstr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jwxxt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(4, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_53kyy"]
+resource_name = "Rock_attack"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [37, 36, 35, 34, 33, 32, 31, 30]
+}
+
+[sub_resource type="Animation" id="Animation_q0ku1"]
+resource_name = "Shot_attack"
+length = 0.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jwxxt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24, 25, 26, 27, 28]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Shot"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nldx2"]
+resource_name = "Standby"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jwxxt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [37]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8ubg"]
+_data = {
+"Blink": SubResource("Animation_h22lw"),
+"Idle": SubResource("Animation_uq6c4"),
+"Laser_attack": SubResource("Animation_dr35c"),
+"Melee_attack": SubResource("Animation_xyxd4"),
+"RESET": SubResource("Animation_3sstr"),
+"Rock_attack": SubResource("Animation_53kyy"),
+"Shot_attack": SubResource("Animation_q0ku1"),
+"Standby": SubResource("Animation_nldx2")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n6rgx"]
+height = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tkau"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 0, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w25h2"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 100, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmneb"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 200, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u85wh"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 300, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbqem"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 400, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvowa"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 500, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c652x"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 600, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8suia"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 700, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv3jm"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 800, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b58jh"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 900, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh15t"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 1000, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3rcq"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 1100, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wwua"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 1200, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cew77"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 1300, 600, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kulov"]
+atlas = ExtResource("4_nr3nr")
+region = Rect2(0, 1400, 600, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0qljs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tkau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w25h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmneb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u85wh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbqem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvowa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c652x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8suia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv3jm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b58jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh15t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3rcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wwua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cew77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kulov")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rd45"]
+size = Vector2(474.286, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bv0kh"]
+
+[node name="Gollen" type="CharacterBody2D" node_paths=PackedStringArray("laser", "anim", "sprite", "Melee_attack", "Melee_collision", "area_laser", "attack_points") groups=["Enemy"]]
+collision_layer = 8
+collision_mask = 129
+script = ExtResource("1_myt3k")
+Projetil = ExtResource("2_infr1")
+laser = NodePath("Laser")
+anim = NodePath("Anim")
+sprite = NodePath("Sprite")
+Melee_attack = NodePath("Area_attack")
+Melee_collision = NodePath("Area_attack/Collision")
+area_laser = NodePath("Laser/area_laser/Collision")
+attack_points = [null, null, null]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_jwxxt")
+hframes = 10
+vframes = 10
+frame = 54
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w8ubg")
+}
+autoplay = "Standby"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_n6rgx")
+
+[node name="pos_shot" type="Marker2D" parent="."]
+position = Vector2(32, -10)
+
+[node name="Laser" type="AnimatedSprite2D" parent="."]
+position = Vector2(185, 0)
+scale = Vector2(0.7, 1)
+sprite_frames = SubResource("SpriteFrames_0qljs")
+frame = 15
+frame_progress = 1.0
+
+[node name="area_laser" type="Area2D" parent="Laser"]
+position = Vector2(0, -15)
+collision_layer = 64
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Laser/area_laser"]
+position = Vector2(-11.4285, 0)
+shape = SubResource("RectangleShape2D_7rd45")
+disabled = true
+debug_color = Color(0.952941, 0.152941, 0.396078, 0.741176)
+
+[node name="Time_attack" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Area_attack" type="Area2D" parent="."]
+position = Vector2(29, 11)
+collision_layer = 64
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Area_attack"]
+shape = SubResource("CircleShape2D_bv0kh")
+disabled = true
+
+[connection signal="area_entered" from="Area_attack" to="." method="_on_area_attack_area_entered"]
